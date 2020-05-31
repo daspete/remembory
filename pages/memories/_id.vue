@@ -15,7 +15,7 @@
                     Fülle alle grauen Felder aus
                 </div>
 
-                <TableZoomer>
+                <TableZoomer ref="tablezoomer">
                     <div>
                         <div class="memory__row" v-for="row in memory.rows" :key="`row-${ row.id }`">
                             <div :class="GetColumnClasses(column)" v-for="column in row.columns" :key="`column-${ column.id }`">
@@ -35,6 +35,7 @@
                 </TableZoomer>
 
                 <div class="bottommenu">
+                    <button type="button" v-on:click="ToogleZoomer">Tabelle {{ tableZoomActive ? 'fixieren' : 'verschieben' }}</button>
                     <button v-if="!gameFinished" @click="FinishGame">Fertig</button>
                     <button v-if="gameFinished" @click="RestartGame">Nochmal</button>
                 </div>
@@ -55,6 +56,7 @@ export default {
 
     asyncData(){
         return {
+            tableZoomActive: true,
             memory: null,
             holeCount: 10,
             gameStarted: false,
@@ -76,6 +78,16 @@ export default {
     },
 
     methods: {
+        ToogleZoomer(){
+            if(this.tableZoomActive){
+                this.tableZoomActive = false
+                this.$refs.tablezoomer.Pause()
+            }else{
+                this.tableZoomActive = true
+                this.$refs.tablezoomer.Resume()
+            }
+        },
+
         StartGame(){
             this.startTime = new Date().getTime()
 
