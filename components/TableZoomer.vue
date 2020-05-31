@@ -82,11 +82,10 @@ export default {
             maxZoom: this.maxZoom,
             minZoom: this.minZoom,
             bounds: true,
-            boundsPadding: 0.2,
+            boundsPadding: 0.2
         })
 
         this.initialized = true
-        console.log(this.zoomerInstance)
     },
 
     methods: {
@@ -102,6 +101,14 @@ export default {
         ZoomOut(){
             let transform = this.zoomerInstance.getTransform()
             this.zoomerInstance.zoomAbs(window.innerWidth * 0.5, window.innerHeight * 0.2, transform.scale / 1.05)
+        },
+
+        Pause(){
+            this.zoomerInstance.pause()
+        },
+
+        Resume(){
+            this.zoomerInstance.resume()
         }
     }
 }

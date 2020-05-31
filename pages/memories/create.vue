@@ -12,7 +12,7 @@
         </div>
 
 
-        <TableZoomer>
+        <TableZoomer ref="tablezoomer">
             <div class="memoryedit">
                 <div class="memoryedit__row" v-for="row in memory.rows" :key="`row-${ row.id }`">
                     <div class="memoryedit__column memoryedit__column--small">
@@ -34,8 +34,9 @@
         </TableZoomer>
     
         <div class="memorysave">
-            <button type="button" v-on:click="AddRow()">Neue Zeile hinzufügen</button>
-            <button type="button" v-on:click="AddMemory()">Speichern</button>
+            <button type="button" v-on:click="ToogleZoomer">Tabelle {{ tableZoomActive ? 'fixieren' : 'verschieben' }}</button>
+            <button type="button" v-on:click="AddRow">Neue Zeile hinzufügen</button>
+            <button type="button" v-on:click="AddMemory">Speichern</button>
         </div>
         </client-only>
     </div>
@@ -53,6 +54,7 @@ export default {
 
     data(){
         return {
+            tableZoomActive: true,
             memory: {
                 columnCount: 6,
                 id: new Date().getTime(),
@@ -77,6 +79,15 @@ export default {
     },
 
     methods: {
+        ToogleZoomer(){
+            if(this.tableZoomActive){
+                this.tableZoomActive = false
+                this.$refs.tablezoomer.Pause()
+            }else{
+                this.tableZoomActive = true
+                this.$refs.tablezoomer.Resume()
+            }
+        },
         AddMemory(){
             this.$store.commit('memories/addMemory', this.memory)
             this.$router.push('/')
