@@ -20,6 +20,7 @@
 
         <!-- <button @click="AddMemory">Add memory</button> -->
         <div class="bottommenu">
+            <nuxt-link to="/data">Export/Import</nuxt-link>
             <nuxt-link to="/memories/create">Neues Remembory erstellen</nuxt-link>
         </div>
         
