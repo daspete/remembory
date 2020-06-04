@@ -1,6 +1,7 @@
 export default {
     plugins: [
-        { ssr: false, src: '~plugins/nuxtClientInit' }
+        { ssr: false, src: '~plugins/nuxtClientInit' },
+        { ssr: true, src: '~plugins/components' }
     ],
 
     css: [
@@ -9,6 +10,7 @@ export default {
 
     buildModules: [
         '@nuxtjs/pwa',
+        '@nuxtjs/tailwindcss'
     ],
 
     pwa: {
@@ -21,7 +23,22 @@ export default {
         manifest: {
             name: 'Remembory',
             lang: 'de'
+        },
+        workbox: {
+            runtimeCaching: [
+                {
+                    urlPattern: 'https://fonts.googleapis.com/.*',
+                    handler: 'cacheFirst',
+                    method: 'GET',
+                    strategyOptions: { cacheableResponse: { statuses: [0, 200] }}
+                },
+                {
+                    urlPattern: 'https://fonts.gstatic.com/.*',
+                    handler: 'cacheFirst',
+                    method: 'GET',
+                    strategyOptions: { cacheableResponse: { statuses: [0, 200] }}
+                },
+            ]
         }
     }
-
 }
