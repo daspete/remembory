@@ -2,7 +2,7 @@
   "name": "remembory",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/AlPeNStudios/remembory.git",
+  "repository": "https://github.com/daspete/remembory.git",
   "author": "Das PeTe <daspetemail@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -18,6 +18,7 @@
     "dotenv": "^8.2.0",
     "node-sass": "^4.14.1",
     "nuxt": "^2.12.2",
+    "nuxt-i18n": "^6.12.2",
     "panzoom": "^9.2.4",
     "sass-loader": "^8.0.2"
   }

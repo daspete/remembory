@@ -1,17 +1,31 @@
 export default {
+    css: [
+        '~/assets/scss/app.scss'
+    ],
+    
     plugins: [
         { ssr: false, src: '~plugins/nuxtClientInit' },
         { ssr: true, src: '~plugins/components' }
     ],
 
-    css: [
-        '~/assets/scss/app.scss'
+    modules: [
+        'nuxt-i18n'
     ],
 
     buildModules: [
         '@nuxtjs/pwa',
         '@nuxtjs/tailwindcss'
     ],
+
+    i18n: {
+        locales: [
+            { code: 'de', file: 'de.js' },
+            { code: 'en', file: 'en.js' }
+        ],
+        defaultLocale: 'de',
+        lazy: true,
+        langDir: 'lang/'
+    },
 
     pwa: {
         meta: {

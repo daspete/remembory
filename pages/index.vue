@@ -1,6 +1,9 @@
 <template>
     <div class="app">
         <TopMenu />
-        <nuxt-child />
+
+        <div class="container mx-auto app__content p-3">
+            <nuxt-child />
+        </div>
     </div>
 </template>
