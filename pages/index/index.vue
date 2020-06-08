@@ -4,3 +4,9 @@
         <span class="text-base">Lerne spielerisch und effizient.</span>
     </div>
 </template>
+
+<script>
+export default {
+    name: 'index_index'
+}
+</script>

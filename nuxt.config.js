@@ -23,6 +23,7 @@ export default {
             { code: 'en', file: 'en.js' }
         ],
         defaultLocale: 'de',
+        strategy: 'no_prefix',
         lazy: true,
         langDir: 'lang/'
     },
