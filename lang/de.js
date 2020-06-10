@@ -23,6 +23,16 @@ export default (context) => {
                 nothing: {
                     headline: 'Noch kein Remembory erstellt',
                     create: 'Jetzt neues Remembory erstellen'
+                },
+                delete: {
+                    confirm: {
+                        title: 'Remembory löschen?',
+                        content: 'Willst du dieses Remembory wirklich löschen?',
+                        labels: {
+                            yes: 'Ja',
+                            cancel: 'Abbrechen'
+                        }
+                    }
                 }
             }
         })
