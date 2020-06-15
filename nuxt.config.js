@@ -5,7 +5,8 @@ export default {
     
     plugins: [
         { ssr: false, src: '~plugins/nuxtClientInit' },
-        { ssr: true, src: '~plugins/components' }
+        { ssr: true, src: '~plugins/components' },
+        { ssr: false, src: '~plugins/draggable' }
     ],
 
     modules: [
@@ -14,8 +15,13 @@ export default {
 
     buildModules: [
         '@nuxtjs/pwa',
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss',
+        '@nuxtjs/moment'
     ],
+
+    moment: {
+        locales: ['de', 'en-gb']
+    },
 
     i18n: {
         locales: [

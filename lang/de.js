@@ -14,7 +14,9 @@ export default (context) => {
                     cards: 'Karten'
                 },
                 cards: {
-                    add: 'Karte hinzufügen'
+                    add: 'Karte hinzufügen',
+                    title: 'Frage',
+                    content: 'Antwort'
                 }
             },
             create: {

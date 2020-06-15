@@ -1,6 +1,6 @@
 <template>
     <div class="editor">
-        <form @submit.prevent="SaveMemory">
+        <client-only>
             <div class="pb-1">
                 <label class="inline-block w-20" for="title">{{ $t('editor.name') }}</label>
                 <input class="border w-48 p-2" name="title" type="text" v-model="memory.title" />
@@ -15,26 +15,40 @@
             </div>
 
             <div v-if="memory.type == 'table'">
-                <div class="pb-1">
-                    <label class="inline-block w-20" for="columnCount">{{ $t('editor.columnCount') }}</label>
-                    <input class="border w-48 p-2" name="columnCount" type="number" v-model="memory.columnCount" />
-                </div>
+                <label class="inline-block w-20" for="columnCount">{{ $t('editor.columnCount') }}</label>
+                <input class="border w-48 p-2" name="columnCount" type="number" v-model="memory.columnCount" />
             </div>
             
             <div v-if="memory.type == 'card'">
-                <div class="pb-1">
-                    <div class="pb-1"
+                <div class="sticky mt-4 px-2 py-2 bg-teal-100 text-center" style="top: 48px">
+                    <button type="button" @click="AddCard" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white bg-white hover:bg-teal-500">{{ $t('editor.cards.add') }}</button>
+                </div>
+
+                <draggable v-model="memory.cards" class="flex flex-wrap -mx-2">
+                    <div class="w-full md:w-1/3 px-2 py-2"
                         v-for="(card, cardIndex) in memory.cards"
                         :key="`card-${ card.id }`"
                     >
-                        {{ card }}
+                        <div class="px-4 py-2 border rounded border-teal-500">
+                            <div class="pb-1">
+                                <label class="inline-block w-full" :for="`title-${ card.id }`">{{ $t('editor.cards.title') }}</label>
+                                <input class="border w-full p-2" :name="`title-${ card.id }`" type="text" v-model="card.headline" />
+                            </div>
+
+                            <div class="pb-1">
+                                <label class="inline-block w-full" :for="`title-${ card.id }`">{{ $t('editor.cards.content') }}</label>
+                                <textarea class="border w-full p-2" :name="`title-${ card.id }`" type="text" v-model="card.content"></textarea>
+                            </div>
+
+                            <button type="button" @click="DeleteCard(cardIndex)">
+                                <svg class="inline-block h-4 w-4 fill-current text-teal-500 hover:text-teal-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/></svg>
+                            </button>
+                        </div>
                     </div>
-
-
-                    <button type="button" @click="AddCard" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white bg-white hover:bg-teal-500">{{ $t('editor.cards.add') }}</button>
-                </div>
+                </draggable>
             </div>
-        </form>
+        
+        </client-only>
     </div>
 </template>
 
@@ -54,6 +68,9 @@ export default {
                 headline: '',
                 content: ''
             })
+        },
+        DeleteCard(cardIndex){
+            this.memory.cards.splice(cardIndex, 1)
         }
     }
 }

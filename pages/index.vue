@@ -1,19 +1,17 @@
 <template>
     <div class="app">
         <TopMenu />
-
         <nuxt-child />
-<!--         
-        <div class="container mx-auto app__content">
-            
-        </div> -->
-
         <ModalWindow />
     </div>
 </template>
 
 <script>
 export default {
-    name: 'index'
+    name: 'index',
+
+    mounted(){
+        this.$moment.locale(this.$i18n.locale == 'en' ? 'en-gb' : this.$i18n.locale)
+    }
 }
 </script>

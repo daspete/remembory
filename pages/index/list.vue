@@ -3,8 +3,11 @@
         <client-only>
             <div v-if="Memories.length > 0">
                 <div :class="`flex px-2 border-b bg-${ memoryIndex % 2 == 0 ? 'transparent' : 'gray-100' } hover:bg-gray-200`" v-for="(memory, memoryIndex) in Memories" :key="`memory-${ memory.id }-${ memoryIndex }`">
-                    <div class="w-5/6 py-2">
+                    <div class="w-4/6 py-2">
                         <nuxt-link :to="`/play/${ memory.id }`">{{ memory.title }}</nuxt-link>
+                    </div>
+                    <div class="w-1/6 py-2 text-right" v-if="memory.createdAt">
+                        {{ $moment(memory.createdAt).calendar() }}
                     </div>
                     <div class="w-1/6 py-2 text-right">
                         <nuxt-link class="mr-4" :to="`/play/${ memory.id }`">

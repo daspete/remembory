@@ -13,13 +13,16 @@
     "reinstall": "rm -rf node_modules; rm -rf yarn.lock; yarn"
   },
   "dependencies": {
+    "@nuxtjs/moment": "^1.6.1",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "@nuxtjs/tailwindcss": "^2.0.0",
     "dotenv": "^8.2.0",
+    "moment": "^2.26.0",
     "node-sass": "^4.14.1",
     "nuxt": "^2.12.2",
     "nuxt-i18n": "^6.12.2",
     "panzoom": "^9.2.4",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vuedraggable": "^2.23.2"
   }
 }
