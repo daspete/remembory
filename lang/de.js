@@ -25,7 +25,9 @@ export default (context) => {
                 cancel: 'Abbrechen'
             },
             edit: {
-                headline: 'Remembory bearbeiten'
+                headline: 'Remembory bearbeiten',
+                save: 'Aktualisieren',
+                cancel: 'Abbrechen'
             },
             list: {
                 table: {

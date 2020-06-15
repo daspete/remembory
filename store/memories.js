@@ -17,9 +17,11 @@ export const mutations = {
 
     updateMemory(state, memory){
         let currentMemory = state.memories.find((_memory) => { return _memory.id == memory.id })
+        currentMemory.updatedAt = new Date().getTime()
         currentMemory.rows = memory.rows
         currentMemory.title = memory.title
         currentMemory.columnCount = memory.columnCount
+        currentMemory.cards = memory.cards
         localStorage.setItem('memories', JSON.stringify(state.memories))
     },
 

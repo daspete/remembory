@@ -37,6 +37,8 @@ export default {
     methods: {
         SaveMemory(){
             console.log('SAVE')
+            this.$store.commit('memories/addMemory', this.memory)
+            this.$router.push('/list')
         }
     }
 }
