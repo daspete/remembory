@@ -3,7 +3,13 @@ export const actions = {
         try {
             let items = localStorage.getItem('memories')
             if(!items || items == 'null') items = '[]'
-            commit('memories/setMemories', JSON.parse(items))
+            items = JSON.parse(items)
+            items = items.map((item) => {
+                if(typeof item.type === 'undefined') item.type = 'table'
+                return item
+            })
+
+            commit('memories/setMemories', items)
         }catch(err){ console.log(err) }
     }
 }

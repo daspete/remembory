@@ -2,9 +2,11 @@
     <div class="app">
         <TopMenu />
 
-        <div class="container mx-auto app__content p-3">
-            <nuxt-child />
-        </div>
+        <nuxt-child />
+<!--         
+        <div class="container mx-auto app__content">
+            
+        </div> -->
 
         <ModalWindow />
     </div>

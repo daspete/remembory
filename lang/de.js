@@ -7,10 +7,20 @@ export default (context) => {
             },
             editor: {
                 name: 'Titel',
-                columnCount: 'Spalten'
+                columnCount: 'Spalten',
+                type: 'Typ',
+                types: {
+                    table: 'Tabelle',
+                    cards: 'Karten'
+                },
+                cards: {
+                    add: 'Karte hinzufügen'
+                }
             },
             create: {
-                headline: 'Remembory erstellen'
+                headline: 'Remembory erstellen',
+                save: 'Erstellen',
+                cancel: 'Abbrechen'
             },
             edit: {
                 headline: 'Remembory bearbeiten'
