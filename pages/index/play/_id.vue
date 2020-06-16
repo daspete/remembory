@@ -5,12 +5,12 @@
                 
                 <div class="text-center">
                     <div class="pb-1">
-                        <label class="inline-block w-20" for="rounds">Runden</label>
+                        <label class="inline-block w-20" for="rounds">{{ $t('play.rounds') }}</label>
                         <input class="border w-48 p-2" name="rounds" type="number" v-model="game.rounds" />
                     </div>
 
                     <button @click="StartGame" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white hover:bg-teal-500 mt-4">
-                        Start game
+                        {{ $t('play.start') }}
                     </button>
                 </div>
 
@@ -19,16 +19,7 @@
 
             <div v-if="game.started && !game.finished">
 
-                <h1 class="text-xl block text-center">{{ CurrentQuestion.question }}</h1>
-
-                <div v-if="game.currentAnswers == game.currentRound && game.currentRound > 0">
-                    <div v-if="game.lastAnswer.isCorrect">
-                        Richtig
-                    </div>
-                    <div v-if="!game.lastAnswer.isCorrect">
-                        Falsch
-                    </div>
-                </div>
+                <h1 class="text-xl block text-center">{{ game.currentRound + 1 }} / {{ game.rounds }}: {{ CurrentQuestion.question }}</h1>
 
                 <button
                     :class="`w-full px-4 py-2 border border-teal-500 my-1`"
@@ -37,18 +28,32 @@
                 >
                     {{ answer.answer }}
                 </button>
+
+                <div class="py-2" v-if="game.currentAnswers == game.currentRound && game.currentRound > 0">
+                    <div class="bg-green-500 px-4 py-2 text-center" v-if="game.lastAnswer.isCorrect">
+                        {{ $t('play.correct') }}
+                    </div>
+                    <div class="bg-red-500 px-4 py-2 text-center" v-if="!game.lastAnswer.isCorrect">
+                        {{ $t('play.wrong') }}
+                    </div>
+                </div>
             </div>
 
             <div v-if="game.started && game.finished">
                 <div class="text-center">
-                    <h1 class="text-xl">Du hast {{ game.correctAnswers }} von {{ game.rounds }} Antworten gewusst!</h1>
+                    <h1 class="text-xxl">
+                        {{ $t('play.gameOverHeadline') }}
+                    </h1>
+                    <h2 class="text-xl">
+                        {{ $t('play.gameOverContent') }}: {{ game.correctAnswers }} / {{ game.rounds }}
+                    </h2>
 
                     <button @click="game.started = false; game.finished = false" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white hover:bg-teal-500 mt-4">
-                        Nochmal spielen
+                        {{ $t('play.again') }}
                     </button>
 
                     <nuxt-link to="/list" class="inline-block text-sm px-4 py-2 leading-none border rounded text-teal-500 border-teal-500 hover:border-transparent hover:text-white hover:bg-teal-500 mt-4">
-                        Zurück zur Liste
+                        {{ $t('play.back') }}
                     </nuxt-link>
                 </div>
             </div>
@@ -137,7 +142,7 @@ export default {
             this.game.lastAnswer = answer
             this.game.currentAnswers++
 
-            if(this.game.currentRound == this.game.rounds){
+            if(this.game.currentRound >= this.game.rounds - 1){
                 this.Finish()
             }else{
                 this.Next()

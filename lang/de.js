@@ -48,6 +48,16 @@ export default (context) => {
                         }
                     }
                 }
+            },
+            play: {
+                start: 'Spiel starten',
+                back: 'Zurück zur Übersicht',
+                again: 'Nochmal spielen',
+                gameOverHeadline: 'Alles geschafft!',
+                gameOverContent: 'Richtige Antworten',
+                correct: 'Richtig',
+                wrong: 'Falsch',
+                rounds: 'Runden'
             }
         })
     })
