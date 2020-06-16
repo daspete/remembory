@@ -6,7 +6,8 @@ export default {
     plugins: [
         { ssr: false, src: '~plugins/nuxtClientInit' },
         { ssr: true, src: '~plugins/components' },
-        { ssr: false, src: '~plugins/draggable' }
+        { ssr: false, src: '~plugins/draggable' },
+        { ssr: true, src: '~plugins/icons' }
     ],
 
     modules: [

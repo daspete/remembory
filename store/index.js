@@ -11,5 +11,13 @@ export const actions = {
 
             commit('memories/setMemories', items)
         }catch(err){ console.log(err) }
+
+        try {
+            let games = localStorage.getItem('games')
+            if(!games || games == 'null') games = '[]'
+            games = JSON.parse(games)
+
+            commit('games/setGames', games)
+        }catch(err){ console.log(err) }
     }
 }

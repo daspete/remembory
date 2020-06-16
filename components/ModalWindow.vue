@@ -6,15 +6,15 @@
                 <div class="modal__header bg-teal-500 text-white">
                     <span class="modal__header__title">{{ title }}</span>
                     <button class="modal__header__close" @click="Cancel">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
+                        <Icon icon="close" class="inline-block h-4 w-4 fill-current text-teal-500 hover:text-teal-700" /> 
                     </button>
                 </div>
                 <div class="modal__content">
                     {{ content }}
 
                     <div class="modal__buttons">
-                        <button class="modal__button modal__button--yes" @click="Agree">{{ options.labels.yes }}</button>
-                        <button class="modal__button modal__button--cancel" @click="Cancel">{{ options.labels.cancel }}</button>
+                        <button class="modal__button modal__button--yes rounded" @click="Agree">{{ options.labels.yes }}</button>
+                        <button class="modal__button modal__button--cancel rounded" @click="Cancel">{{ options.labels.cancel }}</button>
                     </div>
                 </div>
             </div>

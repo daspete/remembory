@@ -23,6 +23,7 @@
     "nuxt-i18n": "^6.12.2",
     "panzoom": "^9.2.4",
     "sass-loader": "^8.0.2",
+    "vue-zondicons": "^0.1.10",
     "vuedraggable": "^2.23.2"
   }
 }

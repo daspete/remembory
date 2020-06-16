@@ -78,6 +78,7 @@ export default {
                 lastAnswer: null,
                 started: false,
                 finished: false,
+                questions: [],
                 answers: []
             }
         }
@@ -89,12 +90,22 @@ export default {
         }
     },
 
+    async mounted(){
+        let memory = this.$store.getters['memories/Memories'].find((_memory) => {
+            return _memory.id == this.$route.params.id
+        })
+
+        this.memory = JSON.parse(JSON.stringify(memory))
+    },
+
     methods: {
         StartGame(){
             this.game.currentRound = 0
             this.game.currentQuestion = 0
             this.game.currentAnswers = 0
             this.game.correctAnswers = 0
+            this.game.answers = []
+            this.game.questions = []
             this.game.lastAnswer = null
             this.game.finished = false
             this.game.started = true
@@ -104,6 +115,7 @@ export default {
 
                 answers.push({
                     isCorrect: true,
+                    cardId: card.id,
                     answer: card.content
                 })
                 let wrongAnswers = []
@@ -115,6 +127,7 @@ export default {
                 wrongAnswers.push(...otherCards.map((_card) => {
                     return {
                         isCorrect: false,
+                        cardId: _card.id,
                         answer: _card.content
                     }
                 }))
@@ -132,9 +145,12 @@ export default {
             })
 
             this.questions = this.questions.sort(() => { return Math.random() - 0.5 })
+
+            this.game.questions.push(...this.questions)
         },
 
         Answer(answer, answerIndex){
+            this.game.answers.push(answer)
             if(answer.isCorrect){
                 this.game.correctAnswers++
             }
@@ -154,6 +170,16 @@ export default {
 
         Finish(){
             this.game.finished = true
+
+            this.$store.commit('games/addGame', {
+                id: new Date().getTime(),
+                playedAt: new Date().getTime(),
+                memoryId: this.memory.id,
+                questions: this.game.questions,
+                rounds: this.game.rounds,
+                correct: this.game.correctAnswers,
+                answers: this.game.answers
+            })
         },
 
         Next(){
@@ -164,6 +190,7 @@ export default {
                     question.answers = question.answers.sort(() => { return Math.random() - 0.5 })
                     return question
                 })
+                this.game.questions.push(...this.questions)
             }
 
             this.game.currentRound++
@@ -171,12 +198,6 @@ export default {
         },
     },
 
-    async mounted(){
-        let memory = this.$store.getters['memories/Memories'].find((_memory) => {
-            return _memory.id == this.$route.params.id
-        })
-
-        this.memory = JSON.parse(JSON.stringify(memory))
-    },
+    
 }
 </script>
